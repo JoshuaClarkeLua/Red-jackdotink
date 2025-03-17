@@ -57,7 +57,7 @@ local function Event<T...>(Config: string | EventOptions, Validate: (...unknown)
 	assert(not Identifier.Exists(Name), "Cannot use same name twice")
 
 	return {
-		Id = Identifier.Shared(Name):await(),
+		Id = Identifier.Shared(Name):expect(),
 		Validate = Validate,
 
 		Unreliable = Unreliable,

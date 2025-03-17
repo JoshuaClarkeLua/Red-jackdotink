@@ -163,7 +163,7 @@ type ValidateFunction<T...> = (...unknown) -> T...
 
 local function SharedBaseEvent<T...>(Name: string, Unreliable: boolean): SharedBaseEvent<T...>
 	local self = {
-		Id = Identifier.Shared(Name):await(),
+		Id = Identifier.Shared(Name):expect(),
 		Unreliable = Unreliable,
 
 		FireClient = FireClient,
