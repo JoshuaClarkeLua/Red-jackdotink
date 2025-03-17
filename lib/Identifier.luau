@@ -1,7 +1,7 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
-local Future = require(script.Parent.Parent.Future)
+local Promise = require(script.Parent.Parent.Promise)
 
 local Remote = ReplicatedStorage:WaitForChild("ReliableRedEvent")
 local Identifier = {}
@@ -14,7 +14,7 @@ local function UInt(Integer: number)
 end
 
 function Identifier.Shared(Name: string)
-	return Future.new(function(Name: string)
+	return Promise.try(function(Name: string)
 		if RunService:IsServer() then
 			if Remote:GetAttribute(Name) then
 				return Remote:GetAttribute(Name)

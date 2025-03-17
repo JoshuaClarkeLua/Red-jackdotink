@@ -1,6 +1,6 @@
 local RunService = game:GetService("RunService")
 
-local Future = require(script.Parent.Parent.Future)
+local Promise = require(script.Parent.Parent.Promise)
 local Spawn = require(script.Parent.Parent.Spawn)
 
 local Net = require(script.Parent.Net)
@@ -14,9 +14,7 @@ export type Function<A..., R...> = {
 	Call: (
 		self: Function<A..., R...>,
 		A...
-	) -> typeof(Future.new(function(): (boolean, R...)
-		return {} :: any
-	end)),
+	) -> Promise.Promise<boolean, R...>,
 }
 
 local function SetCallback<A..., R...>(self: Function<A..., R...>, Callback: (Player, A...) -> R...)
@@ -38,7 +36,7 @@ local function SetCallback<A..., R...>(self: Function<A..., R...>, Callback: (Pl
 end
 
 local function Call<A..., R...>(self: Function<A..., R...>, ...: A...)
-	return Future.new(function(...: any)
+	return Promise.try(function(...: any)
 		local CallId = Identifier.Unique()
 
 		return unpack(Net.Client.CallAsync(self.Id, table.pack(CallId, ...)))
