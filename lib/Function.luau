@@ -39,7 +39,11 @@ local function Call<A..., R...>(self: Function<A..., R...>, ...: A...)
 	return Promise.try(function(...: any)
 		local CallId = Identifier.Unique()
 
-		return unpack(Net.Client.CallAsync(self.Id, table.pack(CallId, ...)))
+		local CallList = Net.Client.CallAsync(self.Id, table.pack(CallId, ...))
+		if CallList[1] == false then
+			error(tostring(CallList[2]))
+		end
+		return unpack(CallList)
 	end, ...)
 end
 
