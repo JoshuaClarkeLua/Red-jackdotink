@@ -43,6 +43,7 @@ local function Call<A..., R...>(self: Function<A..., R...>, ...: A...)
 		if CallList[1] == false then
 			error(tostring(CallList[2]))
 		end
+		table.remove(CallList, 1)
 		return unpack(CallList)
 	end, ...)
 end
