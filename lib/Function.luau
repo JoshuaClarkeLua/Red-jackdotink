@@ -51,7 +51,7 @@ local function Function<A..., R...>(
 	assert(not Identifier.Exists(Name), "Cannot use same name twice")
 
 	return {
-		Id = Identifier.Shared(Name):Await(),
+		Id = Identifier.Shared(Name):await(),
 		Validate = ValidateArg,
 
 		SetCallback = SetCallback,

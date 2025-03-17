@@ -37,9 +37,9 @@ function TestEvents()
 
 	print("Calling Functions")
 
-	print(ComplexFunction:Call({ one = { "String Literal", 123 }, two = { 123, "String Literal" } }, "hi", 12):Await())
-	print(SimpleFunction:Call(123):Await())
-	print(EmptyFunction:Call():Await())
+	print(ComplexFunction:Call({ one = { "String Literal", 123 }, two = { 123, "String Literal" } }, "hi", 12):await())
+	print(SimpleFunction:Call(123):await())
+	print(EmptyFunction:Call():await())
 
 	task.wait(0.5)
 
